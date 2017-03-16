@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">网易云音乐</string>
+    <string name="action_findmusic">扫描歌曲</string>
+    <string name="action_sort">选择排序方式</string>
+    <string name="action_getpicture">一键获取封面歌词</string>
+    <string name="action_update">升级音质</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+</resources>

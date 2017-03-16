@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/recommend_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:id="@+id/ll_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="145dp"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/fm_view"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true"
+                    android:src="@drawable/recommend_fm_select" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fm_view"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="5dp"
+                    android:text="我的FM"
+                    android:textColor="#000000"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/daily_view"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true"
+                    android:src="@drawable/recommend_daily_select" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="12dp"
+                    android:text="22"
+                    android:textColor="@drawable/recommend_daily_textcolor_select"
+                    android:textSize="28dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/daily_view"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="5dp"
+                    android:text="每日歌曲推荐"
+                    android:textColor="#000000"
+                    android:textSize="13dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/rank_view"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true"
+                    android:src="@drawable/recommend_rank_select" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rank_view"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="5dp"
+                    android:text="云音乐新歌榜"
+                    android:textColor="#000000"
+                    android:textSize="13dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#CCCCCC" />
+
+        <!-- 推荐歌单-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/music_list_icon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="2dp"
+                android:src="@drawable/recommend" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/music_list_icon"
+                android:paddingTop="4dp"
+                android:text="推荐歌单"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/more_music_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:paddingRight="15dp"
+                android:paddingTop="6dp"
+                android:text="更多>"
+                android:textColor="#828282"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+
+        <!-- 歌单列表-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/music_list_1"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/music_list_1" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/music_list_1"
+                    android:layout_below="@+id/music_list_1"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="我只是难过，不能陪你一起到老"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/music_list_2"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/music_list_2" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/music_list_2"
+                    android:layout_below="@+id/music_list_2"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="韩国女团全收录，每团一首精选"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/music_list_3"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/music_list_3" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/music_list_3"
+                    android:layout_below="@+id/music_list_3"
+                    android:maxLines="2"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="人生无处不修行，孤独中也能心静如水"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/music_list_4"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/music_list_4" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/music_list_4"
+                    android:layout_below="@+id/music_list_4"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="我希望有一个如你一般的人"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/music_list_5"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/music_list_5" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/music_list_5"
+                    android:layout_below="@+id/music_list_5"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="消融不了孤独，请与其拥抱把"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/music_list_6"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/music_list_6" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/music_list_6"
+                    android:layout_below="@+id/music_list_6"
+                    android:maxLines="2"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="温律酿情，且听呢喃娓娓道来"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- 主播电台-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp">
+
+            <ImageView
+                android:id="@+id/radio_station_icon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:src="@drawable/radiostation" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/radio_station_icon"
+                android:paddingTop="4dp"
+                android:text="主播电台"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/more_radio_station"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:paddingRight="15dp"
+                android:paddingTop="6dp"
+                android:text="更多>"
+                android:textColor="#828282"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <!-- 主播电台-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/radio_station_1"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/radio_station_1" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/radio_station_1"
+                    android:layout_below="@+id/radio_station_1"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="杰克糖的故事盒"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/radio_station_2"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/radio_station_2" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/radio_station_2"
+                    android:layout_below="@+id/radio_station_2"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="有毒的文字"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/radio_station_3"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/radio_station_3" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/radio_station_3"
+                    android:layout_below="@+id/radio_station_3"
+                    android:maxLines="2"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="电影那些动听的音乐"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/radio_station_4"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/radio_station_4" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/radio_station_4"
+                    android:layout_below="@+id/radio_station_4"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="世界最动听的音乐分享"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/radio_station_5"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/radio_station_5" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/radio_station_5"
+                    android:layout_below="@+id/radio_station_5"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="每首歌都有一个故事"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/radio_station_6"
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/radio_station_6" />
+
+                <TextView
+                    android:layout_width="108dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/radio_station_6"
+                    android:layout_below="@+id/radio_station_6"
+                    android:maxLines="2"
+                    android:paddingTop="5dp"
+                    android:singleLine="false"
+                    android:text="每周明星陪你读好书"
+                    android:textColor="#000000"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp" />
+    </LinearLayout>
+
+
+</ScrollView>
