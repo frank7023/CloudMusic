@@ -50,7 +50,7 @@ public class DrawerListAdapter extends BaseAdapter {
         if (view == null) {
             view = mInflater.inflate(R.layout.drawer_list_item, null);
             viewHolder = new ViewHolder();
-            viewHolder.item_icon = (ImageView) view.findViewById(R.id.left_item_icon);
+//            viewHolder.item_icon = (ImageView) view.findViewById(R.id.left_item_icon);
 //            viewHolder.item_title = (TextView) view.findViewById(R.id.left_item_title);
             view.setTag(viewHolder);
         } else {
