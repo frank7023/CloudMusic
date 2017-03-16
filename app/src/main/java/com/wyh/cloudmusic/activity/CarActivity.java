@@ -18,12 +18,7 @@ public class CarActivity extends BaseActivity {
         initToolbar("驾驶模式");//调用基类的初始化toolbar方法
     }
 
-    public void car() {
 
-    }
-    public void car1() {
-
-    }
     @Override
     public View initView() {
         return null;
