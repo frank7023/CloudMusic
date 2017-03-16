@@ -18,10 +18,6 @@ public class ClockActivity extends BaseActivity {
         initToolbar("音乐闹钟");//调用基类的初始化toolbar方法
     }
 
-    public void car() {
-
-    }
-
     @Override
     public View initView() {
         return null;
