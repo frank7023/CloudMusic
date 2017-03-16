@@ -21,7 +21,9 @@ public class CarActivity extends BaseActivity {
     public void car() {
 
     }
+    public void car1() {
 
+    }
     @Override
     public View initView() {
         return null;
