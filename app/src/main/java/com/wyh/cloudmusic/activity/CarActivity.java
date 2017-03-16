@@ -17,7 +17,9 @@ public class CarActivity extends BaseActivity {
         baseSetContentView(R.layout.car_activity);
         initToolbar("驾驶模式");//调用基类的初始化toolbar方法
     }
+    public void car() {
 
+    }
     @Override
     public View initView() {
         return null;
