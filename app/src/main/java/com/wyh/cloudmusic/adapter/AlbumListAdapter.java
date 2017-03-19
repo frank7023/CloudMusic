@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wyh.cloudmusic.R;
@@ -13,17 +14,20 @@ import com.wyh.cloudmusic.item.MusicListItem;
 import java.util.List;
 
 /**
- * Created by haoge728 on 2016/10/23.
- * 本地音乐里单曲的ListView的适配器
+ * 2017年3月18日 11:10:11
+ * 本地音乐里专辑的ListView的适配器
  */
-public class MusicListAdapter extends BaseAdapter {
+
+public class AlbumListAdapter extends BaseAdapter {
 
 
     private LayoutInflater mInflater;
     private List<MusicListItem> mItems;
+    private Context context;
 
-    public MusicListAdapter(Context context, List<MusicListItem> data) {
+    public AlbumListAdapter(Context context, List<MusicListItem> data) {
         this.mInflater = LayoutInflater.from(context);
+        this.context = context;
         this.mItems = data;
     }
 
@@ -47,24 +51,27 @@ public class MusicListAdapter extends BaseAdapter {
         View view = convertView;
         ViewHolder viewHolder;
         if (view == null) {
-            view = mInflater.inflate(R.layout.music_list_item, null);
+            view = mInflater.inflate(R.layout.album_list_item, null);
             viewHolder = new ViewHolder();
-            viewHolder.music_title = (TextView) view.findViewById(R.id.music_title);
-            viewHolder.music_artist = (TextView) view.findViewById(R.id.music_artist);
+            viewHolder.album_image = (ImageView) view.findViewById(R.id.album_image);
+            viewHolder.album_title = (TextView) view.findViewById(R.id.album_title);
+            viewHolder.album_artist = (TextView) view.findViewById(R.id.album_artist);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
 
         if (mItems.get(position) != null) {
-            viewHolder.music_title.setText(mItems.get(position).getTitle());
-            viewHolder.music_artist.setText(mItems.get(position).getArtist());
+            viewHolder.album_image.setImageBitmap(mItems.get(position).getAlbum_image());
+            viewHolder.album_title.setText(mItems.get(position).getAlbum());
+            viewHolder.album_artist.setText(mItems.get(position).getArtist());
         }
         return view;
     }
 
     static class ViewHolder {
-        TextView music_title;
-        TextView music_artist;
+        ImageView album_image;
+        TextView album_title;
+        TextView album_artist;
     }
 }

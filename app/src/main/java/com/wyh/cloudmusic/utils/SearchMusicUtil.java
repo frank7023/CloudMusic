@@ -28,7 +28,7 @@ public class SearchMusicUtil {
     /**
      * 查找手机上所有歌曲
      */
-    public static List<MusicListItem> searchMusicONPhone(Context context) {
+    public static List<MusicListItem> searchMusicONPhone(final Context context) {
         List<MusicListItem> musiclist = new ArrayList<MusicListItem>();
         //游标查询手机上所有的音乐
         Cursor cursor = context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -44,7 +44,7 @@ public class SearchMusicUtil {
                 music.setTimes(formatTime(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION))));//歌曲的总播放时长
                 music.setUrl(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)));//歌曲文件的路径
                 music.setSize(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE)));//歌曲文件的大小
-                //把查找到的音乐放到list中
+                music.setAlbum_image(getArtwork(context, music.getId(), music.getAlbumID(), true, true));//专辑图片
                 musiclist.add(music);
             }
 

@@ -33,11 +33,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         fragmentArrayList.add(homepagerFragment);
         fragmentArrayList.add(musicFragment);
         fragmentArrayList.add(momentsFragment);
-//        transaction = fm.beginTransaction();
-//        transaction.add(homepagerFragment, "homepager");
-//        transaction.add(musicFragment, "music");
-//        transaction.add(momentsFragment, "moments");
-//        transaction.commit();
     }
 
     @Override

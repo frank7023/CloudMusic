@@ -29,6 +29,7 @@ public class FileFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        System.out.println("FileFragment创建成功");
         textView.setText("文件夹");
         textView.setTextSize(30);
     }

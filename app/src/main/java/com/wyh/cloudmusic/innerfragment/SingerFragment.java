@@ -11,12 +11,12 @@ import com.wyh.cloudmusic.base.BaseFragment;
  * Created by haoge728 on 2016/9/17.
  * 本地音乐下的歌手界面
  */
-public class SingFragment extends BaseFragment {
+public class SingerFragment extends BaseFragment {
 
     private TextView textView;
     private Context context;
 
-    public SingFragment(Context context) {
+    public SingerFragment(Context context) {
         this.context = context;
     }
 
@@ -29,6 +29,7 @@ public class SingFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        System.out.println("SingerFragment创建成功");
         textView.setText("歌手");
         textView.setTextSize(30);
     }

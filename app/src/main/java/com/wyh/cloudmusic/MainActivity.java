@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ListView mLeftLsitView;
     private ImageView titleBtn1, titleBtn2, titleBtn3, titleBtn4;
     private TextView settingBtn, quitBtn;
-    private ArrayList<DrawerListItem> mItems = new ArrayList<DrawerListItem>();
+    private ArrayList<DrawerListItem> mDrawerListItems = new ArrayList<DrawerListItem>();
     private Intent intent = new Intent();
     private MyFragmentPagerAdapter myFragmentPagerAdapter;
     private ImageView bottomSingerImage;//底部播放栏照片
@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final int STOP_MSG = 3;        //停止
     public static final int CONTINUE_MSG = 4;    //继续
     public static final int PREVIOUS_MSG = 5;    //上一首
-
     public static final int NEXT_MSG = 6;        //下一首
 
     @Override
@@ -78,11 +77,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setTranslucentStatus();//沉浸栏，如果加上了，手機底部如果有功能鍵，頂部就會被拉長
         findViews();//初始化控件
         initToolbar();//初始化toolbar
-        InitDrawerListData.initDrawerListItem(mItems);//初始化侧滑栏item数据
-        initListView();//初始化ListView
+        InitDrawerListData.initDrawerListItem(mDrawerListItems);//初始化侧滑栏item数据
+        initListView();//初始化侧滑栏里的ListView
         initFragmentPager();//初始化ViewPager和Fragment
         initPlayingState();//初始化播放状态和歌曲信息
         registerReceiver();//注册广播
+
     }
 
     public void findViews() {
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 设置ListView
      */
     public void initListView() {
-        DrawerListAdapter mDrawerListAdapter = new DrawerListAdapter(this, mItems);
+        DrawerListAdapter mDrawerListAdapter = new DrawerListAdapter(this, mDrawerListItems);
         mLeftLsitView.setAdapter(mDrawerListAdapter);
         mLeftLsitView.setOnItemClickListener(new LeftItemClickListener());//设置item的点击监听
     }

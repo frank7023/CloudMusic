@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="7dp"
+    android:paddingTop="8dp"
     android:paddingLeft="10dp">
 
     <TextView
@@ -15,7 +15,7 @@
 
     <TextView
         android:paddingTop="5dp"
-        android:paddingBottom="7dp"
+        android:paddingBottom="8dp"
         android:id="@+id/music_artist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

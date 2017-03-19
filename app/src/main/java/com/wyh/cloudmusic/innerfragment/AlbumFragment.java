@@ -2,9 +2,11 @@ package com.wyh.cloudmusic.innerfragment;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.wyh.cloudmusic.R;
+import com.wyh.cloudmusic.activity.WelcomeActivity;
+import com.wyh.cloudmusic.adapter.AlbumListAdapter;
 import com.wyh.cloudmusic.base.BaseFragment;
 
 /**
@@ -13,8 +15,10 @@ import com.wyh.cloudmusic.base.BaseFragment;
  */
 public class AlbumFragment extends BaseFragment {
 
-    private TextView textView;
+    private ListView listview;//展示专辑列表的listview
+    private AlbumListAdapter adapter;//展示专辑列表的适配器
     private Context context;
+//    private List<MusicListItem> mItems = new ArrayList<MusicListItem>();//存储歌曲信息的集合
 
     public AlbumFragment(Context context) {
         this.context = context;
@@ -22,13 +26,14 @@ public class AlbumFragment extends BaseFragment {
     @Override
     public View initView() {
         View view = View.inflate(mActivity, R.layout.album_fragment,null);
-        textView = (TextView) view.findViewById(R.id.textview);
+        listview = (ListView) view.findViewById(R.id.album_listview);
         return view;
     }
 
     @Override
     public void initData() {
-        textView.setText("专辑");
-        textView.setTextSize(30);
+        System.out.println("AlbumFragment创建成功");
+        adapter = new AlbumListAdapter(context, WelcomeActivity.mItems);
+        listview.setAdapter(adapter);
     }
 }

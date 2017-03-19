@@ -50,7 +50,7 @@ public class HomepageFragment extends BaseFragment {
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(1)));
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(2)));
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(3)));
-        if (recommendFragemnt == null && playlistFragment == null & radiostationFragment == null && ranklistFragment == null) {
+        if (recommendFragemnt == null && playlistFragment == null && radiostationFragment == null && ranklistFragment == null) {
             recommendFragemnt = new RecommendFragment();
             playlistFragment = new PlayListFragment();
             radiostationFragment = new RadioStationFragment();

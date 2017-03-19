@@ -16,7 +16,7 @@ import com.wyh.cloudmusic.base.BaseActivity;
 import com.wyh.cloudmusic.innerfragment.AlbumFragment;
 import com.wyh.cloudmusic.innerfragment.FileFragment;
 import com.wyh.cloudmusic.innerfragment.MusicsFragment;
-import com.wyh.cloudmusic.innerfragment.SingFragment;
+import com.wyh.cloudmusic.innerfragment.SingerFragment;
 
 import java.util.ArrayList;
 
@@ -38,6 +38,7 @@ public class LocalMusicActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         baseSetContentView(R.layout.local_music_activity);
+        System.out.println("LocalMusicActivity创建成功");
         initToolbar("本地音乐");//调用基类的初始化toolbar方法
         tabLayout = (TabLayout) findViewById(R.id.my_local_music_tablayout);
         viewPager = (ViewPager) findViewById(R.id.my_local_music_viewpager);
@@ -59,18 +60,27 @@ public class LocalMusicActivity extends BaseActivity {
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(1)));
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(2)));
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(3)));
-        musicsFragment = new MusicsFragment(context);
-        singerFragment = new SingFragment(context);
-        albumFragment = new AlbumFragment(context);
-        fileFragment = new FileFragment(context);
-        fragment_list.add(musicsFragment);
-        fragment_list.add(singerFragment);
-        fragment_list.add(albumFragment);
-        fragment_list.add(fileFragment);
+        if (musicsFragment == null) {
+            musicsFragment = new MusicsFragment(context);
+            fragment_list.add(musicsFragment);
+        }
+        if (singerFragment == null) {
+            singerFragment = new SingerFragment(context);
+            fragment_list.add(singerFragment);
+        }
+        if (albumFragment == null) {
+            albumFragment = new AlbumFragment(context);
+            fragment_list.add(albumFragment);
+        }
+        if (fileFragment == null) {
+            fileFragment = new FileFragment(context);
+            fragment_list.add(fileFragment);
+        }
         adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager(), tab_title_list, fragment_list);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);//将TabLayout和ViewPager关联起来
         tabLayout.setTabsFromPagerAdapter(adapter);//给Tabs设置适配器
+
     }
 
     @Override

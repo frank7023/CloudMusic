@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by haoge728 on 2016/9/17.
- * 推荐界面VierPager和TabLayout的适配器
+ * 推荐界面和本地音乐VierPager和TabLayout的适配器
  */
 public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
 

@@ -1,5 +1,7 @@
 package com.wyh.cloudmusic.item;
 
+import android.graphics.Bitmap;
+
 public class MusicListItem {
 
     private int id;    //音乐ID
@@ -19,6 +21,16 @@ public class MusicListItem {
     private long size; //歌曲文件大小
 
     private String sortletters;
+
+    private Bitmap album_image; //专辑图片
+
+    public Bitmap getAlbum_image() {
+        return album_image;
+    }
+
+    public void setAlbum_image(Bitmap album_image) {
+        this.album_image = album_image;
+    }
 
     public int getId() {
         return id;

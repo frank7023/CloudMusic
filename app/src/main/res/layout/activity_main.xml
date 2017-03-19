@@ -10,18 +10,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar"></include>
+        <include layout="@layout/toolbar"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/my_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
     <include
         android:id="@+id/bottom_layout"
-        layout="@layout/bottom_music_layout"></include>
+        layout="@layout/bottom_music_layout"/>
 
     <!--侧滑栏-->
     <LinearLayout
