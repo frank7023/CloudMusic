@@ -1,5 +1,6 @@
 package com.wyh.cloudmusic.init;
 
+import com.wyh.cloudmusic.MainActivity;
 import com.wyh.cloudmusic.R;
 import com.wyh.cloudmusic.item.MusicMenuListItem;
 
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public class InitMusicMenuListData {
     public static void initMusicMenuListItem(List<MusicMenuListItem> mItems) {
-        MusicMenuListItem item1 = new MusicMenuListItem(0, R.drawable.music_menu_list_icon1, "本地音乐", "(0)");
+        MusicMenuListItem item1 = new MusicMenuListItem(0, R.drawable.music_menu_list_icon1, "本地音乐", "("+ MainActivity.mItems.size()+")");
         mItems.add(item1);
         MusicMenuListItem item2 = new MusicMenuListItem(0, R.drawable.music_menu_list_icon2, "最近播放", "(0)");
         mItems.add(item2);

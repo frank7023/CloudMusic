@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 import com.wyh.cloudmusic.MainActivity;
 import com.wyh.cloudmusic.R;
+import com.wyh.cloudmusic.adapter.SingerListAdapter;
 import com.wyh.cloudmusic.base.BaseFragment;
 
 /**

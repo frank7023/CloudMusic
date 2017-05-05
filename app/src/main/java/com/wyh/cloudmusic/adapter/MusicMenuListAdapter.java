@@ -102,7 +102,7 @@ public class MusicMenuListAdapter extends BaseAdapter {
                     viewHolder1 = new ViewHolder1();
                     viewHolder1.item_icon = (ImageView) view.findViewById(R.id.music_menu_item_icon1);
                     viewHolder1.item_title = (TextView) view.findViewById(R.id.music_menu_item_title1);
-                    viewHolder1.item_title_tag = (TextView) view.findViewById(R.id.music_menu_item_tag1);
+                    viewHolder1.item_music_sum = (TextView) view.findViewById(R.id.music_menu_item_tag1);
                     view.setTag(viewHolder1);
                 } else {
                     viewHolder1 = (ViewHolder1) view.getTag();
@@ -110,7 +110,7 @@ public class MusicMenuListAdapter extends BaseAdapter {
                 if (mItems.get(position) != null) {
                     viewHolder1.item_icon.setImageResource(mItems.get(position).getTitle_icon());
                     viewHolder1.item_title.setText(mItems.get(position).getMenu_title());
-                    viewHolder1.item_title_tag.setText(mItems.get(position).getTitle_tag());
+                    viewHolder1.item_music_sum.setText(mItems.get(position).getMusic_sum());
                 }
                 break;
 
@@ -321,7 +321,7 @@ public class MusicMenuListAdapter extends BaseAdapter {
     static class ViewHolder1 {
         ImageView item_icon;
         TextView item_title;
-        TextView item_title_tag;
+        TextView item_music_sum;
     }
 
     static class ViewHolder2 {

@@ -7,7 +7,7 @@ public class MusicMenuListItem {
 
     private int title_icon;//音乐界面菜单的图标
     private String menu_title;//音乐界面菜单的标题
-    private String title_tag;//音乐界面菜单标题后面的数字
+    private String music_sum;//音乐界面菜单标题后面的数字
 
     private int playlist_icon;//歌单图标
     private String playlist_title;//歌单标题
@@ -20,11 +20,11 @@ public class MusicMenuListItem {
 
     }
 
-    public MusicMenuListItem(int item_type, int title_icon, String menu_title, String title_tag) {
+    public MusicMenuListItem(int item_type, int title_icon, String menu_title, String music_sum) {
         this.item_type = item_type;
         this.title_icon = title_icon;
         this.menu_title = menu_title;
-        this.title_tag = title_tag;
+        this.music_sum = music_sum;
     }
 
     public MusicMenuListItem(int item_type, int playlist_icon, String playlist_title, String playlist_music_count, int menu_button) {
@@ -51,12 +51,12 @@ public class MusicMenuListItem {
         this.menu_title = menu_title;
     }
 
-    public String getTitle_tag() {
-        return title_tag;
+    public String getMusic_sum() {
+        return music_sum;
     }
 
-    public void setTitle_tag(String title_tag) {
-        this.title_tag = title_tag;
+    public void setMusic_sum(String title_tag) {
+        this.music_sum = music_sum;
     }
 
     public int getPlaylist_icon() {
