@@ -28,6 +28,7 @@ public class SingerListAdapter extends BaseAdapter {
     private List<MusicListItem> mItems;
     private List<String> singer_list = new ArrayList<>();
     private Context context;
+//    private int a ;
 
     public SingerListAdapter(Context context, List<MusicListItem> data) {
         this.mInflater = LayoutInflater.from(context);
