@@ -8,18 +8,13 @@ import android.view.View;
 import com.wyh.cloudmusic.MainActivity;
 import com.wyh.cloudmusic.R;
 import com.wyh.cloudmusic.base.BaseActivity;
-import com.wyh.cloudmusic.item.MusicListItem;
-import com.wyh.cloudmusic.utils.SearchMusicUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by muyang on 2016/3/1.
  */
 public class WelcomeActivity extends BaseActivity {
     private static final int DELAY_TIME = 3000;
-    public static List<MusicListItem> mItems = new ArrayList<MusicListItem>();//存储歌曲信息的集合
+//    public static List<MusicListItem> mItems = new ArrayList<MusicListItem>();//存储歌曲信息的集合
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,18 +32,18 @@ public class WelcomeActivity extends BaseActivity {
 //        MediaScannerConnection.scanFile(this, new String[]{Environment
 //                .getExternalStorageDirectory().getAbsolutePath()}, null, null);
 
-        //提前加载手机里的音乐资源，供本地音乐使用
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //抛出异常，避免因为没有歌曲而闪退
-                try {
-                    mItems = SearchMusicUtil.searchMusicONPhone(WelcomeActivity.this);//扫描SD卡内的歌曲信息
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//        //提前加载手机里的音乐资源，供本地音乐使用
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                //抛出异常，避免因为没有歌曲而闪退
+//                try {
+//                    mItems = SearchMusicUtil.searchMusicONPhone(WelcomeActivity.this);//扫描SD卡内的歌曲信息
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
 
     }
 

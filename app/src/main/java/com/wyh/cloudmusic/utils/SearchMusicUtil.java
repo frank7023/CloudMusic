@@ -44,7 +44,7 @@ public class SearchMusicUtil {
                 music.setTimes(formatTime(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION))));//歌曲的总播放时长
                 music.setUrl(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)));//歌曲文件的路径
                 music.setSize(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE)));//歌曲文件的大小
-                music.setAlbum_image(getArtwork(context, music.getId(), music.getAlbumID(), true, true));//专辑图片
+//                music.setAlbum_image(getArtwork(context, music.getId(), music.getAlbumID(), true, true));//专辑图片
                 musiclist.add(music);
             }
 
@@ -78,9 +78,9 @@ public class SearchMusicUtil {
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inPreferredConfig = Bitmap.Config.RGB_565;
         if (small) {  //返回小图片
-            return BitmapFactory.decodeStream(context.getResources().openRawResource(R.drawable.album_1), null, opts);
+            return BitmapFactory.decodeStream(context.getResources().openRawResource(R.drawable.drawer_face), null, opts);
         }
-        return BitmapFactory.decodeStream(context.getResources().openRawResource(R.drawable.album_2), null, opts);
+        return BitmapFactory.decodeStream(context.getResources().openRawResource(R.drawable.drawer_face), null, opts);
     }
 
 
@@ -125,7 +125,9 @@ public class SearchMusicUtil {
             // 我们得到了缩放的比例，现在开始正式读入Bitmap数据
             options.inJustDecodeBounds = false;
             options.inDither = false;
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
+
 
             //根据options参数，减少所需要的内存
             bm = BitmapFactory.decodeFileDescriptor(fd, null, options);
@@ -174,14 +176,15 @@ public class SearchMusicUtil {
                 /** 我们的目标是在你N pixel的画面上显示。 所以需要调用computeSampleSize得到图片缩放的比例 **/
                 /** 这里的target为800是根据默认专辑图片大小决定的，800只是测试数字但是试验后发现完美的结合 **/
                 if (small) {
-                    options.inSampleSize = computeSampleSize(options, 40);
+                    options.inSampleSize = computeSampleSize(options, 60);
                 } else {
                     options.inSampleSize = computeSampleSize(options, 600);
                 }
                 // 我们得到了缩放比例，现在开始正式读入Bitmap数据
                 options.inJustDecodeBounds = false;
                 options.inDither = false;
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
                 in = res.openInputStream(uri);
                 return BitmapFactory.decodeStream(in, null, options);
             } catch (FileNotFoundException e) {

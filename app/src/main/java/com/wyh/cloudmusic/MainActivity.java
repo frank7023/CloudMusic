@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final int CONTINUE_MSG = 4;    //继续
     public static final int PREVIOUS_MSG = 5;    //上一首
     public static final int NEXT_MSG = 6;        //下一首
+    public static List<MusicListItem> mItems = new ArrayList<MusicListItem>();//存储歌曲信息的集合
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initFragmentPager();//初始化ViewPager和Fragment
         initPlayingState();//初始化播放状态和歌曲信息
         registerReceiver();//注册广播
+
+        //提前加载手机里的音乐资源，供本地音乐使用
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //抛出异常，避免因为没有歌曲而闪退
+                try {
+                    mItems = SearchMusicUtil.searchMusicONPhone(MainActivity.this);//扫描SD卡内的歌曲信息
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
     }
 
@@ -346,8 +361,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        //注销广播
         unregisterReceiver(bottomPlayerReceiver);
+        super.onDestroy();
+    }
+
+    //Android按返回键退出程序但不销毁，程序后台运行
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /**
@@ -357,6 +383,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            //注销广播
+            unregisterReceiver(this);
             String action = intent.getAction();
             if (action.equals(UPDATE_ACTION)) {
                 playBtn.setImageResource(R.drawable.bottom_playbar_btn_pause);

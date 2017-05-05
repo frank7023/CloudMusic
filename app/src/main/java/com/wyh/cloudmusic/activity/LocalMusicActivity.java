@@ -14,7 +14,6 @@ import com.wyh.cloudmusic.R;
 import com.wyh.cloudmusic.adapter.HomeFragmentPagerAdapter;
 import com.wyh.cloudmusic.base.BaseActivity;
 import com.wyh.cloudmusic.innerfragment.AlbumFragment;
-import com.wyh.cloudmusic.innerfragment.FileFragment;
 import com.wyh.cloudmusic.innerfragment.MusicsFragment;
 import com.wyh.cloudmusic.innerfragment.SingerFragment;
 
@@ -55,32 +54,33 @@ public class LocalMusicActivity extends BaseActivity {
         tab_title_list.add("单曲");
         tab_title_list.add("歌手");
         tab_title_list.add("专辑");
-        tab_title_list.add("文件夹");
+//        tab_title_list.add("文件夹");
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(0)));
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(1)));
         tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(2)));
-        tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(3)));
-        if (musicsFragment == null) {
-            musicsFragment = new MusicsFragment(context);
-            fragment_list.add(musicsFragment);
-        }
-        if (singerFragment == null) {
-            singerFragment = new SingerFragment(context);
-            fragment_list.add(singerFragment);
-        }
-        if (albumFragment == null) {
-            albumFragment = new AlbumFragment(context);
-            fragment_list.add(albumFragment);
-        }
-        if (fileFragment == null) {
-            fileFragment = new FileFragment(context);
-            fragment_list.add(fileFragment);
-        }
+//        tabLayout.addTab(tabLayout.newTab().setText(tab_title_list.get(3)));
+//        if (musicsFragment == null) {
+        System.out.println("MusicsFragment is null!");
+//        musicsFragment = new MusicsFragment(context);
+        musicsFragment = MusicsFragment.newInstance(context);
+        fragment_list.add(musicsFragment);
+//        }
+//        if (singerFragment == null) {
+        singerFragment = new SingerFragment(context);
+        fragment_list.add(singerFragment);
+//        }
+//        if (albumFragment == null) {
+        albumFragment = new AlbumFragment(context);
+        fragment_list.add(albumFragment);
+//        }
+//        if (fileFragment == null) {
+//        fileFragment = new FileFragment(context);
+//        fragment_list.add(fileFragment);
+//        }
         adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager(), tab_title_list, fragment_list);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);//将TabLayout和ViewPager关联起来
         tabLayout.setTabsFromPagerAdapter(adapter);//给Tabs设置适配器
-
     }
 
     @Override

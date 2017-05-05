@@ -12,7 +12,7 @@
         android:id="@+id/album_image"
         android:layout_width="52dp"
         android:layout_height="52dp"
-        android:background="@drawable/second" />
+        android:background="@drawable/drawer_face" />
 
     <LinearLayout
         android:layout_width="wrap_content"

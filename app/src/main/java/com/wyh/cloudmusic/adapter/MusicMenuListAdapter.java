@@ -154,7 +154,7 @@ public class MusicMenuListAdapter extends BaseAdapter {
                         @Override
                         public void onClick(View v) {
                             showPopupWindow(1);//显示创建歌单的PopupWindow界面
-                            tag = position;//标记position值，用于删除item
+                            tag = position + 1;//标记position值，用于删除item
                         }
                     });
                     view.setTag(viewHolder3);
@@ -288,6 +288,7 @@ public class MusicMenuListAdapter extends BaseAdapter {
                                 break;
 
                             case 1:
+                                //删除歌单
                                 mItems.remove(tag);
                                 notifyDataSetChanged();
                                 mPopWindow.dismiss();

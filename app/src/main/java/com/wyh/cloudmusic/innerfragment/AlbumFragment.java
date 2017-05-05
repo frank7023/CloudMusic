@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ListView;
 
+import com.wyh.cloudmusic.MainActivity;
 import com.wyh.cloudmusic.R;
-import com.wyh.cloudmusic.activity.WelcomeActivity;
 import com.wyh.cloudmusic.adapter.AlbumListAdapter;
 import com.wyh.cloudmusic.base.BaseFragment;
 
@@ -33,7 +33,7 @@ public class AlbumFragment extends BaseFragment {
     @Override
     public void initData() {
         System.out.println("AlbumFragment创建成功");
-        adapter = new AlbumListAdapter(context, WelcomeActivity.mItems);
+        adapter = new AlbumListAdapter(context, MainActivity.mItems);
         listview.setAdapter(adapter);
     }
 }

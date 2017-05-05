@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.wyh.cloudmusic.MainActivity;
 import com.wyh.cloudmusic.R;
 import com.wyh.cloudmusic.activity.MediaPlayActivity;
-import com.wyh.cloudmusic.activity.WelcomeActivity;
 import com.wyh.cloudmusic.adapter.MusicListAdapter;
 import com.wyh.cloudmusic.base.BaseFragment;
 import com.wyh.cloudmusic.item.MusicListItem;
@@ -25,8 +25,10 @@ public class MusicsFragment extends BaseFragment {
     //    private List<MusicListItem> mItems = new ArrayList<MusicListItem>();//存储歌曲信息的集合
     public static final String UPDATE_ACTION = "com.wwj.action.UPDATE_ACTION";  //更新动作
 
-    public MusicsFragment(Context context) {
-        this.context = context;
+    public static MusicsFragment newInstance(Context context) {
+        MusicsFragment musicsFragment = new MusicsFragment();
+//        this.context = context;
+        return musicsFragment;
     }
 
     @Override
@@ -37,15 +39,21 @@ public class MusicsFragment extends BaseFragment {
     }
 
     @Override
+    public void onDestroy() {
+        System.out.println("MusicsFragment is destroy");
+        super.onDestroy();
+    }
+
+    @Override
     public void initData() {
         System.out.println("musicsFragment创建成功");
-        adapter = new MusicListAdapter(context, WelcomeActivity.mItems);
+        adapter = new MusicListAdapter(getActivity(), MainActivity.mItems);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (WelcomeActivity.mItems != null) {   //如果歌曲集合不为空
-                    MusicListItem musicListItem = WelcomeActivity.mItems.get(position);
+                if (MainActivity.mItems != null) {   //如果歌曲集合不为空
+                    MusicListItem musicListItem = MainActivity.mItems.get(position);
 
                     Intent sendIntent = new Intent(UPDATE_ACTION);
                     //保存当前播放的歌曲标识

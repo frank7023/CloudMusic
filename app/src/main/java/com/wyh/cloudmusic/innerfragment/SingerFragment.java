@@ -2,9 +2,11 @@ package com.wyh.cloudmusic.innerfragment;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ListView;
 
+import com.wyh.cloudmusic.MainActivity;
 import com.wyh.cloudmusic.R;
+import com.wyh.cloudmusic.adapter.SingerListAdapter;
 import com.wyh.cloudmusic.base.BaseFragment;
 
 /**
@@ -13,8 +15,9 @@ import com.wyh.cloudmusic.base.BaseFragment;
  */
 public class SingerFragment extends BaseFragment {
 
-    private TextView textView;
+    private ListView listView;
     private Context context;
+    private SingerListAdapter adapter;
 
     public SingerFragment(Context context) {
         this.context = context;
@@ -23,14 +26,14 @@ public class SingerFragment extends BaseFragment {
     @Override
     public View initView() {
         View view = View.inflate(mActivity, R.layout.singer_fragment, null);
-        textView = (TextView) view.findViewById(R.id.textview);
+        listView = (ListView) view.findViewById(R.id.singer_listview);
         return view;
     }
 
     @Override
     public void initData() {
         System.out.println("SingerFragment创建成功");
-        textView.setText("歌手");
-        textView.setTextSize(30);
+        adapter = new SingerListAdapter(context, MainActivity.mItems);
+        listView.setAdapter(adapter);
     }
 }

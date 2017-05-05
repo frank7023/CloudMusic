@@ -73,10 +73,12 @@ public class MediaPlayActivity extends Activity {
     private String duration;       //歌曲长度
     private int flag;           //播放标识
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_media_play_view);
+        System.out.println("MediaPlayActivity has onCreate");
         try {
             mp3Infos = SearchMusicUtil.searchMusicONPhone(getApplicationContext());  //获取歌曲对象集合
         } catch (Exception e) {
@@ -172,7 +174,7 @@ public class MediaPlayActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-//        System.out.println("MediaPlayActivity has onPause");
+        System.out.println("MediaPlayActivity has onPause");
     }
 
     /**
@@ -181,8 +183,8 @@ public class MediaPlayActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        //registerReceiver();//注册广播
-//        System.out.println("MediaPlayActivity has onResume");
+        registerReceiver();//注册广播
+        System.out.println("MediaPlayActivity has onResume");
     }
 
     /**
@@ -190,16 +192,18 @@ public class MediaPlayActivity extends Activity {
      */
     @Override
     protected void onStop() {
+        //注销广播
+//        unregisterReceiver(playerReceiver);
         super.onStop();
-        //unregisterReceiver(playerReceiver);
-//        System.out.println("MediaPlayActivity has onStop");
+        System.out.println("MediaPlayActivity has onStop");
     }
 
     @Override
     protected void onDestroy() {
+        //注销广播
+//        unregisterReceiver(playerReceiver);
         super.onDestroy();
-        unregisterReceiver(playerReceiver);
-//        System.out.println("MediaPlayActivity has onDestroy");
+        System.out.println("MediaPlayActivity has onDestroy");
     }
 
     /**
@@ -296,7 +300,6 @@ public class MediaPlayActivity extends Activity {
         intent.putExtra("listPosition", listPosition);
         intent.putExtra("MSG", PLAY_MSG);
         startService(intent);
-
     }
 
     /**
@@ -441,6 +444,8 @@ public class MediaPlayActivity extends Activity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            //注销广播
+//            unregisterReceiver(this);
             String action = intent.getAction();
             if (action.equals(MUSIC_CURRENT)) {
                 //如果action为com.wwj.action.MUSIC_CURRENT，获取歌曲当前播放时间并在播放界面中更新

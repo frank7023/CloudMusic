@@ -63,8 +63,6 @@ public class PlayerService extends Service {
 
             }
         }
-
-        ;
     };
 
     @Override
@@ -130,30 +128,34 @@ public class PlayerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        current = intent.getIntExtra("listPosition", -1); //当前播放歌曲的在mp3Infos的位置
-        msg = intent.getIntExtra("MSG", 0);   //播放信息
-        path = intent.getStringExtra("url"); //歌曲路径
-        if (msg == PLAY_MSG) {
-            play(0);//直接播放音乐
-        } else if (msg == PAUSE_MSG) {
-            pause();//暂停
-        } else if (msg == STOP_MSG) {
-            stop();//停止
-        } else if (msg == CONTINUE_MSG) {
-            resume();//继续播放
-        } else if (msg == PREVIOUS_MSG) {
-            previous();//上一首
-        } else if (msg == NEXT_MSG) {
-            next();//下一首
-        } else if (msg == PROGRESS_CHANGE) {
-            currentTime = intent.getIntExtra("progress", -1);//获取当前播放进度时间
-            play(currentTime);//从当前播放时间开始播放
+        if (intent != null) {
+            current = intent.getIntExtra("listPosition", 0); //当前播放歌曲的在mp3Infos的位置
+//            current = 1;
+            msg = intent.getIntExtra("MSG", 0);   //播放信息
+            path = intent.getStringExtra("url"); //歌曲路径
+            if (msg == PLAY_MSG) {
+                play(0);//直接播放音乐
+            } else if (msg == PAUSE_MSG) {
+                pause();//暂停
+            } else if (msg == STOP_MSG) {
+                stop();//停止
+            } else if (msg == CONTINUE_MSG) {
+                resume();//继续播放
+            } else if (msg == PREVIOUS_MSG) {
+                previous();//上一首
+            } else if (msg == NEXT_MSG) {
+                next();//下一首
+            } else if (msg == PROGRESS_CHANGE) {
+                currentTime = intent.getIntExtra("progress", -1);//获取当前播放进度时间
+                play(currentTime);//从当前播放时间开始播放
+            }
         }
+
 //        else if (msg == PLAYING_MSG) {
 //            handler.sendEmptyMessage(1);//正在播放，发送消息通知播放界面更新歌曲的播放进度时间
 //        }
 //        System.out.println("onStartCommand------------->");
-        return super.onStartCommand(intent, flags, startId);
+        return super.onStartCommand(intent, START_FLAG_REDELIVERY, startId);
     }
 
 
@@ -169,7 +171,7 @@ public class PlayerService extends Service {
             mediaPlayer.prepare(); // 进行缓冲
 //            mediaPlayer.prepareAsync();
             mediaPlayer.setOnPreparedListener(new PreparedListener(currentTime));// 注册一个监听器,当音乐准备好的时候开始播放
-            //发送消息通知PlayerActivity更改当前播放时间
+            //发送消息通知MediaPlayActivity更改当前播放时间
             handler.sendEmptyMessage(1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -276,6 +278,8 @@ public class PlayerService extends Service {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            //注销广播
+            unregisterReceiver(this);
             int control = intent.getIntExtra("control", -1);
             switch (control) {
                 case 1:

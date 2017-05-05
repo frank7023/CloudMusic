@@ -8,11 +8,9 @@ import com.wyh.cloudmusic.adapter.MusicMenuListAdapter;
 import com.wyh.cloudmusic.base.BaseFragment;
 import com.wyh.cloudmusic.implement.MusicItemClickListener;
 import com.wyh.cloudmusic.init.InitMusicMenuListData;
-import com.wyh.cloudmusic.item.MusicListItem;
 import com.wyh.cloudmusic.item.MusicMenuListItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by haoge728 on 2016/9/16.
@@ -38,7 +36,6 @@ public class MusicFragment extends BaseFragment {
         adapter = new MusicMenuListAdapter(mActivity, mMenuItems);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new MusicItemClickListener());//设置item的点击监听
-
     }
 
 }
