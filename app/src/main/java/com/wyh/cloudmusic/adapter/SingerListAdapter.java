@@ -86,8 +86,8 @@ public class SingerListAdapter extends BaseAdapter {
         }
 
 //        if (mItems.get(position) != null) {
+        viewHolder.singer_name.setText(singer_list.get(position));
 //            viewHolder.singer_image.setImageBitmap(mItems.get(position).getAlbum_image());
-            viewHolder.singer_name.setText(singer_list.get(position));
 //            viewHolder.singer_name.setText(mItems.get(position).getArtist());
 //        }
         return view;
