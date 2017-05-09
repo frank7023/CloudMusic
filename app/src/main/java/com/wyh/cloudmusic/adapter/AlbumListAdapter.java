@@ -63,6 +63,8 @@ public class AlbumListAdapter extends BaseAdapter {
 
         if (mItems.get(position) != null) {
             viewHolder.album_image.setImageBitmap(mItems.get(position).getAlbum_image());
+              //获取专辑图片
+//            viewHolder.album_image.setImageBitmap(SearchMusicUtil.getArtwork(context, mItems.get(position).getId(), mItems.get(position).getAlbumID(), true, true));
             viewHolder.album_title.setText(mItems.get(position).getAlbum());
             viewHolder.album_artist.setText(mItems.get(position).getArtist());
         }

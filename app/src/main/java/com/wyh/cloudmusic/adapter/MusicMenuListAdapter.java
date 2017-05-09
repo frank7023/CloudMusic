@@ -154,7 +154,8 @@ public class MusicMenuListAdapter extends BaseAdapter {
                         @Override
                         public void onClick(View v) {
                             showPopupWindow(1);//显示创建歌单的PopupWindow界面
-                            tag = position + 1;//标记position值，用于删除item
+                            tag = position;//标记position值，用于删除item
+                            System.out.println("position=" + position);
                         }
                     });
                     view.setTag(viewHolder3);
@@ -256,6 +257,7 @@ public class MusicMenuListAdapter extends BaseAdapter {
                                         //创建新歌单并刷新listview
                                         musicMenuListItem = new MusicMenuListItem(2, R.drawable.radio_station_12, editText.getText().toString(), "0首，已下载0首", R.drawable.playlist_menu_button);
                                         mItems.add(musicMenuListItem);
+//                                        tag = tag + 1;
                                         notifyDataSetChanged();
                                         mPopWindow.dismiss();
                                     }
@@ -290,6 +292,7 @@ public class MusicMenuListAdapter extends BaseAdapter {
                             case 1:
                                 //删除歌单
                                 mItems.remove(tag);
+//                                tag = tag - 1;
                                 notifyDataSetChanged();
                                 mPopWindow.dismiss();
                                 break;
