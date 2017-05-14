@@ -31,6 +31,11 @@ public class AlbumListAdapter extends BaseAdapter {
         this.mItems = data;
     }
 
+//    @Override
+//    public boolean hasStableIds() {
+//        return true;
+//    }
+
     @Override
     public int getCount() {
         return mItems.size();
