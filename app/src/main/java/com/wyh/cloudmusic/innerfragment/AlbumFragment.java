@@ -23,9 +23,10 @@ public class AlbumFragment extends BaseFragment {
     public AlbumFragment(Context context) {
         this.context = context;
     }
+
     @Override
     public View initView() {
-        View view = View.inflate(mActivity, R.layout.album_fragment,null);
+        View view = View.inflate(mActivity, R.layout.album_fragment, null);
         listview = (ListView) view.findViewById(R.id.album_listview);
         return view;
     }
@@ -33,7 +34,7 @@ public class AlbumFragment extends BaseFragment {
     @Override
     public void initData() {
         System.out.println("AlbumFragment创建成功");
-        adapter = new AlbumListAdapter(context, MainActivity.mItems);
+        adapter = new AlbumListAdapter(context, MainActivity.mItems, listview);
         listview.setAdapter(adapter);
     }
 }

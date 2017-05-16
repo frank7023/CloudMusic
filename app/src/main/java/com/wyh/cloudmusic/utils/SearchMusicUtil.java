@@ -23,7 +23,7 @@ import java.util.List;
 public class SearchMusicUtil {
 
     //获取专辑封面的Uri
-    private static final Uri albumArtUri = Uri.parse("content://media/external/audio/albumart");
+    public static final Uri albumArtUri = Uri.parse("content://media/external/audio/albumart");
 
     /**
      * 查找手机上所有歌曲

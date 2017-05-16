@@ -7,8 +7,10 @@
         android:id="@+id/media_play_background_image"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/media_play_background_image"
+        android:background="@drawable/c"
         android:scaleType="center" />
+        <!--android:background="@drawable/media_play_background_image"-->
+
 
     <Button
         android:id="@+id/media_play_back"
