@@ -88,6 +88,8 @@ public class AlbumListAdapter extends BaseAdapter {
 
             //获取专辑图片
 //            viewHolder.album_image.setImageBitmap(SearchMusicUtil.getArtwork(context, mItems.get(position).getId(), mItems.get(position).getAlbumID(), true, true));
+
+            //使用imageloader框架加载图片
             ImageLoader.getInstance().displayImage(SearchMusicUtil.albumArtUri + "/" + mItems.get(position).getAlbumID(), viewHolder.album_image, options);
 
             viewHolder.album_title.setText(mItems.get(position).getAlbum());

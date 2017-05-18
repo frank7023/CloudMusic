@@ -9,10 +9,16 @@ import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.view.animation.AnimationUtils;
 
+import com.wyh.cloudmusic.R;
+import com.wyh.cloudmusic.activity.MediaPlayActivity;
+import com.wyh.cloudmusic.item.LrcContent;
 import com.wyh.cloudmusic.item.MusicListItem;
+import com.wyh.cloudmusic.utils.LyricUtils;
 import com.wyh.cloudmusic.utils.SearchMusicUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,11 +36,16 @@ public class PlayerService extends Service {
     private int currentTime;        //当前播放进度
     private int duration;           //播放长度
 
+    private LyricUtils mlyricUtils; //歌词处理
+    private List<LrcContent> lrcList = new ArrayList<LrcContent>(); //存放歌词列表对象
+    private int index = 0;          //歌词检索值
+
     //服务要发送的一些Action
     public static final String UPDATE_ACTION = "com.wwj.action.UPDATE_ACTION";  //更新动作
     public static final String CTL_ACTION = "com.wwj.action.CTL_ACTION";        //控制动作
     public static final String MUSIC_CURRENT = "com.wwj.action.MUSIC_CURRENT";  //当前音乐播放时间更新动作
     public static final String MUSIC_DURATION = "com.wwj.action.MUSIC_DURATION";//新音乐长度更新动作
+    public static final String SHOW_LRC = "com.wwj.action.SHOW_LRC";//音乐显示歌词动作
 
     public static final int PLAY_MSG = 1;        //播放
     public static final int PAUSE_MSG = 2;        //暂停
@@ -44,6 +55,7 @@ public class PlayerService extends Service {
     public static final int NEXT_MSG = 6;        //下一首
     public static final int PROGRESS_CHANGE = 7;//进度改变
     public static final int PLAYING_MSG = 8;    //正在播放
+
     /**
      * handler用来接收消息，来发送广播更新播放时间
      */
@@ -105,6 +117,7 @@ public class PlayerService extends Service {
         myReceiver = new MyReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(CTL_ACTION);
+        filter.addAction(SHOW_LRC);//音乐歌词显示动作
         registerReceiver(myReceiver, filter);
     }
 
@@ -166,6 +179,8 @@ public class PlayerService extends Service {
      */
     private void play(int currentTime) {
         try {
+            //解析歌词并显示
+            initLrc();
             mediaPlayer.reset();// 把各项参数恢复到初始状态
             mediaPlayer.setDataSource(path);
             mediaPlayer.prepare(); // 进行缓冲
@@ -176,6 +191,58 @@ public class PlayerService extends Service {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void initLrc() {
+        mlyricUtils = new LyricUtils();
+        //读取歌词文件
+        mlyricUtils.readLRC(mp3Infos.get(current).getUrl());
+        //传回处理后的歌词文件
+        lrcList = mlyricUtils.getLrcList();
+        MediaPlayActivity.lyricView.setmLrcList(lrcList);
+        //切换带动画显示歌词
+        MediaPlayActivity.lyricView.setAnimation(AnimationUtils.loadAnimation(PlayerService.this, R.anim.alpha_z));
+        handler.post(mRunnable);
+    }
+
+    Runnable mRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            MediaPlayActivity.lyricView.setIndex(lrcIndex());
+            MediaPlayActivity.lyricView.invalidate();
+            handler.postDelayed(mRunnable, 100);
+        }
+    };
+
+    /**
+     * 根据时间获取歌词显示的索引值
+     *
+     * @return
+     */
+    public int lrcIndex() {
+        if (mediaPlayer.isPlaying()) {
+            currentTime = mediaPlayer.getCurrentPosition();
+            duration = mediaPlayer.getDuration();
+        }
+        if (currentTime < duration) {
+            for (int i = 0; i < lrcList.size(); i++) {
+                if (i < lrcList.size() - 1) {
+                    if (currentTime < lrcList.get(i).getLrcTime() && i == 0) {
+                        index = i;
+                    }
+                    if (currentTime > lrcList.get(i).getLrcTime()
+                            && currentTime < lrcList.get(i + 1).getLrcTime()) {
+                        index = i;
+                    }
+                }
+                if (i == lrcList.size() - 1
+                        && currentTime > lrcList.get(i).getLrcTime()) {
+                    index = i;
+                }
+            }
+        }
+        return index;
     }
 
     /**
@@ -291,6 +358,12 @@ public class PlayerService extends Service {
                 case 3:
                     status = 3; // 将播放状态置为3表示：随机播放
                     break;
+            }
+            String action = intent.getAction();
+            if (action.equals(SHOW_LRC)) {
+                current = intent.getIntExtra("listPosition", -1);
+                //解析歌词并显示
+                initLrc();
             }
         }
     }

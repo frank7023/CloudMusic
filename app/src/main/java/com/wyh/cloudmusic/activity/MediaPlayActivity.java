@@ -17,6 +17,7 @@ import com.wyh.cloudmusic.R;
 import com.wyh.cloudmusic.item.MusicListItem;
 import com.wyh.cloudmusic.service.PlayerService;
 import com.wyh.cloudmusic.utils.SearchMusicUtil;
+import com.wyh.cloudmusic.view.LyricView;
 
 import java.util.List;
 
@@ -47,6 +48,9 @@ public class MediaPlayActivity extends Activity {
     private PlayerReceiver playerReceiver;  //自定义的广播接收器
     private List<MusicListItem> mp3Infos;//歌曲信息集合
 
+    public static LyricView lyricView; //自定义歌词显示控件
+
+
     //一系列动作
     public static final String UPDATE_ACTION = "com.wwj.action.UPDATE_ACTION";  //更新动作
     public static final String CTL_ACTION = "com.wwj.action.CTL_ACTION";        //控制动作
@@ -55,6 +59,7 @@ public class MediaPlayActivity extends Activity {
     public static final String MUSIC_PLAYING = "com.wwj.action.MUSIC_PLAYING";  //音乐正在播放动作
     public static final String REPEAT_ACTION = "com.wwj.action.REPEAT_ACTION";  //音乐重复播放动作
     public static final String SHUFFLE_ACTION = "com.wwj.action.SHUFFLE_ACTION";//音乐随机播放动作
+    public static final String SHOW_LRC = "com.wwj.action.SHOW_LRC";//音乐显示歌词动作
 
     public static final int PLAY_MSG = 1;        //播放
     public static final int PAUSE_MSG = 2;        //暂停
@@ -104,6 +109,7 @@ public class MediaPlayActivity extends Activity {
         filter.addAction(UPDATE_ACTION);//更新动作
         filter.addAction(MUSIC_CURRENT);//音乐当前时间改变动作
         filter.addAction(MUSIC_DURATION);//音乐播放长度改变动作
+        filter.addAction(SHOW_LRC);//音乐歌词显示动作
         // 注册BroadcastReceiver
         registerReceiver(playerReceiver, filter);
     }
@@ -123,6 +129,7 @@ public class MediaPlayActivity extends Activity {
         musicCurrentTime = (TextView) findViewById(R.id.media_play_current_time);
         seekBar = (SeekBar) findViewById(R.id.media_play_seekbar);
         mediaPlayBackground = (ImageView) findViewById(R.id.media_play_background_image);
+        lyricView = (LyricView) findViewById(R.id.media_play_lyric);
     }
 
     /**
@@ -136,13 +143,21 @@ public class MediaPlayActivity extends Activity {
         url = bundle.getString("url");
         listPosition = bundle.getInt("listPosition");
         duration = bundle.getString("duration");
+//        title = "a";
+//        artist = "b";
+//        url = "c";
+//        listPosition = 2;
+//        duration = "d";
         //初始化播放界面
         if (title != null && artist != null && url != null) {
             initView();
         } else {
             System.out.println("初始化界面失败");
         }
+        //设置歌曲歌词页面数据
+//        musicLric = new LyricView(this, "/storage/emulated/0/netease/cloudmusic/Dj/不要音乐电台 - 《刚刚好》-吴芊仪.mp3");
     }
+
 
     /**
      * 初始化播放器界面
@@ -169,6 +184,10 @@ public class MediaPlayActivity extends Activity {
         isPlaying = true;
         isPause = false;
 
+        Intent intent = new Intent();
+        intent.setAction(SHOW_LRC);
+        intent.putExtra("listPosition", listPosition);
+        sendBroadcast(intent);
     }
 
     @Override

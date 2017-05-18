@@ -64,6 +64,7 @@ public class MusicsFragment extends BaseFragment {
                     //将歌曲路径放入intent中
                     Intent intent = new Intent();
                     intent.putExtra("url", musicListItem.getUrl());
+                    System.out.println("url=" + musicListItem.getUrl());
                     intent.putExtra("title", musicListItem.getTitle());
                     intent.putExtra("artist", musicListItem.getArtist());
                     intent.putExtra("listPosition", position);
